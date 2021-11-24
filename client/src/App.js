@@ -1,30 +1,59 @@
-// client/src/components/App.js
-import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import AuthenticatedApp from "./components/AuthenticatedApp"
+import UnauthenticatedApp from "./components/UnauthenticatedApp";
+import {useState, useEffect} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router } from 'react-router-dom'
+import {Navbar, Container} from 'react-bootstrap'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentUser, setCurrentUser] = useState(null)
+
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+    fetch('/me')
+    .then(resp => {
+      if(resp.ok) {
+        resp.json().then(user => setCurrentUser(user))
+      } else {
+        console.log('logged in', "no")
+      }
+    })
+  }, [])
+
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
-}
+<>
+<Navbar bg="dark" variant="dark">
+    <Container>
+      <Navbar.Brand href="#home">
+        {/* <img
+          alt=""
+          src="/logo.svg"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+        />{' '} */}
+Food Coop List      </Navbar.Brand>
+    </Container>
+  </Navbar>
+    
+      <Router>
+        {currentUser ? <AuthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser}/> : <UnauthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+      </Router>
+
+
+      <Navbar bg="dark" variant="dark">
+    <Container>
+      <Navbar.Brand>
+       Food Coop List
+      </Navbar.Brand>
+    </Container>
+  </Navbar>
+
+
+      </>
+    );
+  }
+
 
 export default App;
