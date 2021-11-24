@@ -7,6 +7,9 @@ import {Navbar, Container} from 'react-bootstrap'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
+  const [currentUserLists, setCurrentUserLists] = useState([])
+
+
 
 
   useEffect(() => {
@@ -19,6 +22,16 @@ function App() {
       }
     })
   }, [])
+
+
+  useEffect(() => {
+    if(currentUser) {
+      setCurrentUserLists(currentUser.lists)
+      console.log("current user list" , currentUser.lists)
+    }
+  }, [currentUser])  
+
+
 
 
   return (
@@ -38,7 +51,7 @@ Food Coop List      </Navbar.Brand>
   </Navbar>
     
       <Router>
-        {currentUser ? <AuthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser}/> : <UnauthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+        {currentUser ? <AuthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser} currentUserLists={currentUserLists} setCurrentUserLists={setCurrentUserLists}/> : <UnauthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser} />}
       </Router>
 
 

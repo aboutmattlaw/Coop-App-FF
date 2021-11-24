@@ -38,7 +38,7 @@ function Signin({setCurrentUser}) {
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className="m-5">
                 Submit
             </Button>
        

@@ -1,6 +1,7 @@
+import Lists from "./Lists"
 import {Button} from 'react-bootstrap'
 
-function AuthenticatedApp({setCurrentUser, currentUser}) {
+function AuthenticatedApp({setCurrentUser, currentUser, currentUserLists, setCurrentUserLists}) {
 
 
     function handleDelete(e) {
@@ -11,10 +12,10 @@ function AuthenticatedApp({setCurrentUser, currentUser}) {
     }
 
     return (
-        <div>
-            You're logged in! 
-<Button onClick={handleDelete}>Logout</Button>
-        </div>
+        <>
+            <Lists currentUser={currentUser} currentUserLists={currentUserLists} setCurrentUserLists={setCurrentUserLists}></Lists>
+            <Button onClick={handleDelete}>Logout</Button>
+        </>
     )
 }
 
