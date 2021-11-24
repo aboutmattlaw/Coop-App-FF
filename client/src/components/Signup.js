@@ -22,6 +22,7 @@ function Signup({setCurrentUser}) {
                 resp.json().then(data => setCurrentUser(data))
             } else {
                 console.log('user signup resp not ok', resp)
+                alert(resp)
             }
         })
         

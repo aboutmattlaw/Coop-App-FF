@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 import {Form, Button} from "react-bootstrap"
+import {Routes, Route} from 'react-router-dom'
+import ListDetails from './ListDetails'
 
 function Lists({currentUser, currentUserLists, setCurrentUserLists}){
     const [listFormData, setListFormData] = useState({list_name: ''})
-
-
-
+    const [listDetails, setListDetails] = useState([])
 
 
     function handleSubmit(event) {
@@ -22,6 +22,7 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists}){
         .then(resp => resp.json())
         .then(data => {
             setCurrentUserLists(value => value = [...currentUserLists, data])
+            console.log()
         })
     }
 
@@ -34,11 +35,29 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists}){
     }
 
 
+
+    function getListDetails(id) {
+        fetch(`lists/${id}`)
+        .then(resp => resp.json())
+        .then(data => setListDetails(data))
+        .then(console.log(ListDetails))
+    }
+
+
+    
     const lists = currentUserLists.map(list => {
         return  <>
-              <li>{list.list_name}</li>
+              <li onClick={() => getListDetails(list.id)}>{list.list_name}</li>
                 </>
     })
+
+
+    // const items = listDetails.map(list => {
+    //     return  <>
+    //           <li>{list.item_name}</li>
+    //             </>
+    // })
+
     
    
     return(
@@ -46,6 +65,17 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists}){
         <ul>
         {lists}
         </ul>
+
+
+<Routes>
+<Route path="/" element={<ListDetails/>} />
+
+</Routes>
+        
+
+
+
+        <p></p>
 
         <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicListName">

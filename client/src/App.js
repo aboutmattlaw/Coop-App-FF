@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     if(currentUser) {
       setCurrentUserLists(currentUser.lists)
-      console.log("current user list" , currentUser.lists)
+      console.log("current user list" , currentUserLists)
     }
   }, [currentUser])  
 

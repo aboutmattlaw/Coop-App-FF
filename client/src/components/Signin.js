@@ -18,6 +18,7 @@ function Signin({setCurrentUser}) {
                 resp.json().then(user => setCurrentUser(user))
             } else {
                 console.log('user log in', resp)
+                alert(resp)
             }
         })
     }
