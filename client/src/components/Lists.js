@@ -36,27 +36,28 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists}){
 
 
 
-    function getListDetails(id) {
-        fetch(`lists/${id}`)
+    function getListDetails() {
+        fetch(`lists/1`)
         .then(resp => resp.json())
-        .then(data => setListDetails(data))
-        .then(console.log(ListDetails))
+        .then(data => setListDetails(... ListDetails, data))
+        console.log("hello" , listDetails.list_items)
+      
     }
 
 
     
     const lists = currentUserLists.map(list => {
         return  <>
-              <li onClick={() => getListDetails(list.id)}>{list.list_name}</li>
+              <li onClick={getListDetails}>{list.list_name}</li>
                 </>
     })
 
 
-    // const items = listDetails.map(list => {
-    //     return  <>
-    //           <li>{list.item_name}</li>
-    //             </>
-    // })
+    const items = listDetails.list_items.map(list => {
+        return  <>
+              <li>{list.item_name}</li>
+                </>
+    })
 
     
    
@@ -67,10 +68,7 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists}){
         </ul>
 
 
-<Routes>
-<Route path="/" element={<ListDetails/>} />
 
-</Routes>
         
 
 
