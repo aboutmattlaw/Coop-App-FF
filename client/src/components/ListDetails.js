@@ -1,12 +1,40 @@
+import ListHeader from "./ListHeader"
+import {ListGroup} from 'react-bootstrap'
+
+function ListDetails({setCurrentUser, listDetails}) {
+
+
+  // const details = listDetails.map(detail => {
+  //   return <>
+  //       <ListGroup.Item>
+  //           {detail.list_item}
+  //           </ListGroup.Item>
+  //   </>
+  // })
+  
+
+//   const lists = currentUserLists.map(list => {
+//     return <>
+//         <ListGroup.Item onClick={() => getListDetails(list.id)}>
+//             {
+//             list.list_name
+//         }</ListGroup.Item>
+//     </>
+// })
 
 
 
-function ListDetails({setCurrentUser}) {
+
+
     return(
   <>
 
+<ListHeader></ListHeader>
 
-Hello!
+<ListGroup>
+{listDetails}
+
+</ListGroup>
 
     
     </>   
