@@ -1,7 +1,7 @@
 import {Container, Navbar} from 'react-bootstrap'
 
 
-function ListHeader() {
+function ListHeader(listDetails) {
     return(
 <Container>
   <Navbar expand="lg" variant="light" bg="light">

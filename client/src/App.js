@@ -3,7 +3,7 @@ import UnauthenticatedApp from "./components/UnauthenticatedApp";
 import {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router} from 'react-router-dom'
-import {Navbar, Container} from 'react-bootstrap'
+import {Navbar, Container, ListGroup} from 'react-bootstrap'
 import ListDetails from "./components/ListDetails";
 
 function App() { 
@@ -33,7 +33,7 @@ function App() {
     useEffect(() => {
         if (currentUser) {
             setCurrentUserLists(currentUser.lists)
-            console.log("current user list", currentUserLists)
+            // console.log("current user list", currentUserLists)
         }
     }, [currentUser])
 
@@ -45,10 +45,11 @@ function getListDetails(id) {
   console.log(id)
   fetch(`/lists/${id}`)
   .then(resp => resp.json())
-  .then(data => setListDetails({data}),
+  .then(resp => setListDetails(resp),
   console.log("hello", listDetails)
   )
- 
+
+
 
 }
 
@@ -65,7 +66,7 @@ function getListDetails(id) {
             </Navbar>
 
             <Router> {
-                currentUser ? <AuthenticatedApp getListDetails={getListDetails} currentUser={currentUser}
+                currentUser ? <AuthenticatedApp getListDetails={getListDetails} setListDetails={setListDetails} listDetails={listDetails} currentUser={currentUser}
                     setCurrentUser={setCurrentUser}
                     currentUserLists={currentUserLists}
                     setCurrentUserLists={setCurrentUserLists}/> : <UnauthenticatedApp currentUser={currentUser}

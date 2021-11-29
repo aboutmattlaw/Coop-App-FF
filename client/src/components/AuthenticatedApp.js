@@ -2,7 +2,7 @@ import Lists from "./Lists"
 import {Button} from 'react-bootstrap'
 import ListDetails from "./ListDetails"
 
-function AuthenticatedApp({setCurrentUser, currentUser, currentUserLists, setCurrentUserLists, getListDetails}) {
+function AuthenticatedApp({setCurrentUser, currentUser, currentUserLists, setCurrentUserLists, setListDetails, getListDetails, listDetails}) {
 
 
     function handleDelete(e) {
@@ -14,7 +14,7 @@ function AuthenticatedApp({setCurrentUser, currentUser, currentUserLists, setCur
 
     return (
         <>
-            <Lists getListDetails={getListDetails} currentUser={currentUser} currentUserLists={currentUserLists} setCurrentUserLists={setCurrentUserLists}></Lists>
+            <Lists setListDetails={setListDetails} listDetails={listDetails} getListDetails={getListDetails} currentUser={currentUser} currentUserLists={currentUserLists} setCurrentUserLists={setCurrentUserLists}></Lists>
     
             <div><Button onClick={handleDelete}>Logout</Button></div>
         </>

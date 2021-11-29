@@ -1,27 +1,54 @@
 import ListHeader from "./ListHeader"
-import {ListGroup} from 'react-bootstrap'
+import {ListGroup, Button, Form} from 'react-bootstrap'
+import {useState, useEffect} from 'react';
+import NoteForm from "./NoteForm";
 
-function ListDetails({setCurrentUser, listDetails}) {
+
+function ListDetails({notes, setNotes, currentUser, setCurrentUser, listDetails, allItems, setAllItems, noteFormData, setNoteFormData}) {
 
 
-  // const details = listDetails.map(detail => {
-  //   return <>
-  //       <ListGroup.Item>
-  //           {detail.list_item}
-  //           </ListGroup.Item>
-  //   </>
-  // })
+
+console.log("all items:" , allItems)
+
+const all_items = allItems.map(item => {
+  return <>
+  <ListGroup.Item>{item.item_name}<Button>Add</Button></ListGroup.Item>
+
+  </>
+})
+
+
+
+
+
+
+  console.log("listdetails:" , listDetails)
+  console.log("notes:" , listDetails.notes)
+
   
+  const det = listDetails.map(detail => {
+      return (
+        <>
+         <ListGroup.Item>{detail.quantity} {detail.item.item_name}
+         <NoteForm></NoteForm>
+     </ListGroup.Item>
+         </>
+      )
+                  
+})
 
-//   const lists = currentUserLists.map(list => {
-//     return <>
-//         <ListGroup.Item onClick={() => getListDetails(list.id)}>
-//             {
-//             list.list_name
-//         }</ListGroup.Item>
-//     </>
+
+
+// const note_display = listDetails.notes.map(detail => {
+//   return (
+//     <>
+//   <ListGroup.Item>{detail.note_text}
+//          <NoteForm></NoteForm>
+//      </ListGroup.Item>
+//      </>
+//   )
+              
 // })
-
 
 
 
@@ -29,14 +56,15 @@ function ListDetails({setCurrentUser, listDetails}) {
     return(
   <>
 
-<ListHeader></ListHeader>
+<ListHeader listDetails={listDetails}></ListHeader>
 
 <ListGroup>
-{listDetails}
-
+<ListGroup.Item>{det}</ListGroup.Item>
+<ListGroup.Item></ListGroup.Item>
+<ListGroup.Item>{all_items}</ListGroup.Item>
 </ListGroup>
 
-    
+
     </>   
     )
 }

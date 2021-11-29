@@ -3,10 +3,13 @@ import {Form, Button, ListGroup} from "react-bootstrap"
 import {Routes, Route} from 'react-router-dom'
 import ListDetails from './ListDetails'
 
-function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetails}) { // State
+function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetails, setListDetails, listDetails}) { // State
 
     const [listFormData, setListFormData] = useState({list_name: ''})
-    const [listDetails, setListDetails] = useState()
+  
+
+    const [allItems, setAllItems] = useState([])
+    // const [listDetails, setListDetails] = useState([])
 
 
     // adds and shows new list
@@ -43,6 +46,17 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
 
 
 
+
+
+
+  useEffect(() => {
+    fetch('/items')
+    .then(response => response.json())
+    .then(response => setAllItems(response));
+}, [])
+
+
+
     const lists = currentUserLists.map(list => {
         return <>
             <ListGroup.Item onClick={() => getListDetails(list.id)}>
@@ -51,23 +65,21 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
             }</ListGroup.Item>
         </>
     })
-
   
 
 
+    // const items = listDetails.list_items.map(list => {
+    //     return  <>
+    //           <li>{list.item_name}</li>
+    //             </>
+    // })
 
 
     return (
         <>
-      
+    
 
-
-        <ListGroup>
-        {lists}
-        </ListGroup>
-
-            <p></p>
-
+    
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicListName">
                     <Form.Label>Eneter a new list name</Form.Label>
@@ -81,7 +93,14 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
 
-            <div><ListDetails listDetails={listDetails}></ListDetails></div>
+
+
+        <ListGroup>
+        {lists}
+        </ListGroup>
+     
+
+            <div><ListDetails allItems={allItems} setAllItems={setAllItems} listDetails={listDetails}></ListDetails></div>
         </>
     )
 }
