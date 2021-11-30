@@ -1,10 +1,11 @@
 import {useState, useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap'
+import ListDetails from './ListDetails';
 
 
 
 
-function NoteForm({setCurrentUser}) {
+function NoteForm({setCurrentUser, currentUser}) {
 
     const [noteFormData, setNoteFormData] = useState({note_text: ''})
     const [notes, setNotes] = useState([])
@@ -16,7 +17,9 @@ function NoteForm({setCurrentUser}) {
             [event.target.name]: event.target.value
         })
       }
-      function handleNoteSubmit(event, detail, currentUser) {
+
+      
+      function handleNoteSubmit(event, detail, currentUser, listDetails) {
         event.preventDefault()
         setNoteFormData({note_text: ''})
         const obj = {
@@ -32,16 +35,21 @@ function NoteForm({setCurrentUser}) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(obj)
-        }).then(resp => resp.json()).then(data => {
+        }).then(resp => resp.json())
+        .then(data => {
             setNotes(value => value = [
                 ...notes,
                 data
-            ])
+            ],console.log(data))
           
         })
       }
       
-      console.log("notes:", notes)
+      
+   
+
+
+
 
 
     return(

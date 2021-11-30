@@ -41,6 +41,21 @@ class ListItemsController < ApplicationController
      end
    end
 
+
+
+
+   def destroy
+    remove_list_item = ListItem.find_by(id: params[:id])
+ if remove_list_item
+  remove_list_item.destroy
+   render json: {}, status: 404
+ else
+   render json: { error: 'item already deleted' }, status: unprocessable_entity
+ end
+end
+
+
+
       private
     
       def list_items_params

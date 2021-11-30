@@ -48,9 +48,6 @@ function getListDetails(id) {
   .then(resp => setListDetails(resp),
   console.log("hello", listDetails)
   )
-
-
-
 }
 
 

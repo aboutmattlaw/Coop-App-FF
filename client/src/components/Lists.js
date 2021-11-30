@@ -100,7 +100,7 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
         </ListGroup>
      
 
-            <div><ListDetails allItems={allItems} setAllItems={setAllItems} listDetails={listDetails}></ListDetails></div>
+            <div><ListDetails setListDetails={setListDetails} currentUser={currentUser} allItems={allItems} setAllItems={setAllItems} listDetails={listDetails}></ListDetails></div>
         </>
     )
 }
