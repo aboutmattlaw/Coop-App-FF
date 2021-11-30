@@ -1,5 +1,5 @@
 import ListHeader from "./ListHeader"
-import {ListGroup, Button, Form} from 'react-bootstrap'
+import {ListGroup, Button, Form, Badge} from 'react-bootstrap'
 import {useState, useEffect} from 'react';
 import NoteForm from "./NoteForm";
 
@@ -23,7 +23,7 @@ fetch('/list_items', {
   body: JSON.stringify(obj)
 }).then(resp => resp.json())
 .then(resp => {
-  fetch(`lists/${list_id}`).then(resp => resp.json()).then(data => setListDetails(data))
+  fetch(`/lists/21`).then(resp => resp.json()).then(data => setListDetails(data))
 })
 }
 
@@ -33,7 +33,7 @@ console.log("all items:" , allItems)
 
 const all_items = allItems.map(item => {
   return <>
-  <ListGroup.Item>{item.item_name}<Button onClick={() => addItemButton(item.id, item.list_id)}>Add</Button></ListGroup.Item>
+  <ListGroup.Item><Button onClick={() => addItemButton(item.id, item.list_id)}>Add</Button>{item.item_name}</ListGroup.Item>
 
   </>
 })
@@ -62,7 +62,7 @@ function deleteListItem(id, list_id) {
   const det = listDetails.map(detail => {
       return (
         <>
-         <ListGroup.Item>{detail.quantity} {detail.item.item_name} <Button onClick={() => deleteListItem(detail.id, detail.list_id)}>x</Button> 
+         <ListGroup.Item><Button Class="p-3" onClick={() => deleteListItem(detail.id, detail.list_id)}>x</Button><Badge variant="primary" pill>{detail.quantity}</Badge> {detail.item.item_name}   
          <NoteForm currentUser={currentUser}></NoteForm>
      </ListGroup.Item>
          </>
@@ -84,7 +84,6 @@ function deleteListItem(id, list_id) {
 
 <ListGroup>
 <ListGroup.Item>{det}</ListGroup.Item>
-<ListGroup.Item></ListGroup.Item>
 <ListGroup.Item>{all_items}</ListGroup.Item>
 </ListGroup>
 
