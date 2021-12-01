@@ -4,21 +4,16 @@ import {Routes, Route} from "react-router-dom"
 
 
 function UnauthenticatedApp({setCurrentUser}) {
-    return(
-  <>
+    return (
+        <>
 
 
+            <Signin setCurrentUser={setCurrentUser}/>
+
+            <Signup setCurrentUser={setCurrentUser}/>
 
 
-              <Signin setCurrentUser={setCurrentUser}/>
-  
-              <Signup setCurrentUser={setCurrentUser}/>
-
-
-
-
-    
-    </>   
+        </>
     )
 }
 

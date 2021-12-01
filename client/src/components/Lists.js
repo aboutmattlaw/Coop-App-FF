@@ -3,10 +3,17 @@ import {Form, Button, ListGroup} from "react-bootstrap"
 import {Routes, Route} from 'react-router-dom'
 import ListDetails from './ListDetails'
 
-function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetails, setListDetails, listDetails}) { // State
+function Lists({
+    currentUser,
+    currentUserLists,
+    setCurrentUserLists,
+    getListDetails,
+    setListDetails,
+    listDetails
+}) { // State
 
     const [listFormData, setListFormData] = useState({list_name: ''})
-  
+
 
     const [allItems, setAllItems] = useState([])
     // const [listDetails, setListDetails] = useState([])
@@ -44,28 +51,21 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
     }
 
 
-
-
-
-
-
-  useEffect(() => {
-    fetch('/items')
-    .then(response => response.json())
-    .then(response => setAllItems(response));
-}, [])
-
+    useEffect(() => {
+        fetch('/items').then(response => response.json()).then(response => setAllItems(response));
+    }, [])
 
 
     const lists = currentUserLists.map(list => {
         return <>
-            <ListGroup.Item onClick={() => getListDetails(list.id)}>
+            <ListGroup.Item onClick={
+                () => getListDetails(list.id)
+            }>
                 {
                 list.list_name
             }</ListGroup.Item>
         </>
     })
-  
 
 
     // const items = listDetails.list_items.map(list => {
@@ -77,9 +77,8 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
 
     return (
         <>
-    
 
-    
+
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicListName">
                     <Form.Label>Eneter a new list name</Form.Label>
@@ -90,17 +89,20 @@ function Lists({currentUser, currentUserLists, setCurrentUserLists, getListDetai
                         }
                         placeholder="Enter List Name"/>
                 </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
+                <Button variant="primary" type="submit">Add New List</Button>
             </Form>
 
 
+            <ListGroup> {lists} </ListGroup>
 
-        <ListGroup>
-        {lists}
-        </ListGroup>
-     
 
-            <div><ListDetails setListDetails={setListDetails} currentUser={currentUser} allItems={allItems} setAllItems={setAllItems} listDetails={listDetails}></ListDetails></div>
+            <div>
+                <ListDetails setListDetails={setListDetails}
+                    currentUser={currentUser}
+                    allItems={allItems}
+                    setAllItems={setAllItems}
+                    listDetails={listDetails}></ListDetails>
+            </div>
         </>
     )
 }

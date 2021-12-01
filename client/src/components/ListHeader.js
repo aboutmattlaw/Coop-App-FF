@@ -2,14 +2,14 @@ import {Container, Navbar} from 'react-bootstrap'
 
 
 function ListHeader(listDetails) {
-    return(
-<Container>
-  <Navbar expand="lg" variant="light" bg="light">
-    <Container>
-      <Navbar.Brand href="#">List Name</Navbar.Brand>
-    </Container>
-  </Navbar>
-</Container>
+    return (
+        <Container>
+            <Navbar expand="lg" variant="light" bg="light">
+                <Container>
+                    <Navbar.Brand href="#">List Name</Navbar.Brand>
+                </Container>
+            </Navbar>
+        </Container>
     )
 }
 

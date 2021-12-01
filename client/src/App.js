@@ -6,9 +6,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Navbar, Container, ListGroup} from 'react-bootstrap'
 import ListDetails from "./components/ListDetails";
 
-function App() { 
-  
-  // State
+function App() { // State
 
     const [currentUser, setCurrentUser] = useState(null)
     const [currentUserLists, setCurrentUserLists] = useState([])
@@ -38,18 +36,13 @@ function App() {
     }, [currentUser])
 
 
-// list details 
+    // list details
 
 
-function getListDetails(id) {
-  console.log(id)
-  fetch(`/lists/${id}`)
-  .then(resp => resp.json())
-  .then(resp => setListDetails(resp),
-  console.log("hello", listDetails)
-  )
-}
-
+    function getListDetails(id) {
+        console.log(id)
+        fetch(`/lists/${id}`).then(resp => resp.json()).then(resp => setListDetails(resp), console.log("hello", listDetails))
+    }
 
 
     return (
@@ -63,7 +56,10 @@ function getListDetails(id) {
             </Navbar>
 
             <Router> {
-                currentUser ? <AuthenticatedApp getListDetails={getListDetails} setListDetails={setListDetails} listDetails={listDetails} currentUser={currentUser}
+                currentUser ? <AuthenticatedApp getListDetails={getListDetails}
+                    setListDetails={setListDetails}
+                    listDetails={listDetails}
+                    currentUser={currentUser}
                     setCurrentUser={setCurrentUser}
                     currentUserLists={currentUserLists}
                     setCurrentUserLists={setCurrentUserLists}/> : <UnauthenticatedApp currentUser={currentUser}
