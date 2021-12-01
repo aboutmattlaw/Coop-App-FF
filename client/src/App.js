@@ -6,11 +6,14 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Navbar, Container, ListGroup} from 'react-bootstrap'
 import ListDetails from "./components/ListDetails";
 
-function App() { // State
+function App() { 
+
+    // STATE current user / lists that belong to the current user / items in a list
 
     const [currentUser, setCurrentUser] = useState(null)
     const [currentUserLists, setCurrentUserLists] = useState([])
     const [listDetails, setListDetails] = useState([])
+    const [activeList, setActiveList] = useState({})
 
 
     // Fetch current user details
@@ -31,6 +34,7 @@ function App() { // State
     useEffect(() => {
         if (currentUser) {
             setCurrentUserLists(currentUser.lists)
+            setActiveList(currentUser.lists[0])
             // console.log("current user list", currentUserLists)
         }
     }, [currentUser])
@@ -39,11 +43,12 @@ function App() { // State
     // list details
 
 
-    function getListDetails(id) {
-        console.log(id)
-        fetch(`/lists/${id}`).then(resp => resp.json()).then(resp => setListDetails(resp), console.log("hello", listDetails))
+    function getListDetails(list) {
+        console.log(list.id)
+        setActiveList(list)
+        fetch(`/lists/${list.id}`).then(resp => resp.json()).then(resp => setListDetails(resp), console.log("listdetails", listDetails))
     }
-
+    console.log("activelist:", activeList)
 
     return (
         <>
@@ -62,8 +67,9 @@ function App() { // State
                     currentUser={currentUser}
                     setCurrentUser={setCurrentUser}
                     currentUserLists={currentUserLists}
-                    setCurrentUserLists={setCurrentUserLists}/> : <UnauthenticatedApp currentUser={currentUser}
-                    setCurrentUser={setCurrentUser}/>
+                    setCurrentUserLists={setCurrentUserLists} activeList={activeList}/> 
+                    : <UnauthenticatedApp currentUser={currentUser}
+                    setCurrentUser={setCurrentUser} />
             } </Router>
 
 

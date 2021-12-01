@@ -9,7 +9,8 @@ function AuthenticatedApp({
     setCurrentUserLists,
     setListDetails,
     getListDetails,
-    listDetails
+    listDetails,
+    activeList
 }) {
 
 
@@ -22,7 +23,7 @@ function AuthenticatedApp({
     return (
         <>
             <Container>
-                <Lists setListDetails={setListDetails}
+                <Lists activeList={activeList} setListDetails={setListDetails}
                     listDetails={listDetails}
                     getListDetails={getListDetails}
                     currentUser={currentUser}

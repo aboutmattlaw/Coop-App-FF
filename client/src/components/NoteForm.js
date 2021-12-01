@@ -3,10 +3,12 @@ import {Form, Button} from 'react-bootstrap'
 import ListDetails from './ListDetails';
 
 
-function NoteForm({setCurrentUser, currentUser}) {
+// form state and notes state
+
+function NoteForm({setCurrentUser, currentUser, notes, setNotes, detail}) {
 
     const [noteFormData, setNoteFormData] = useState({note_text: ''})
-    const [notes, setNotes] = useState([])
+  
 
 
     function handleNoteChange(event) {
@@ -16,14 +18,18 @@ function NoteForm({setCurrentUser, currentUser}) {
         })
     }
 
+// user_id is hardcoded as is list_item_id
+// TypeError: Cannot read properties of undefined (reading 'id') when trying currentUser.id
 
-    function handleNoteSubmit(event, detail, currentUser, listDetails) {
+
+
+    function handleNoteSubmit(event) {
         event.preventDefault()
         setNoteFormData({note_text: ''})
         const obj = {
             "note_text": event.target[0].value,
-            "user_id": 1,
-            "list_item_id": 1
+            "user_id": currentUser.id,
+            "list_item_id": detail.id
         }
 
 
@@ -41,6 +47,7 @@ function NoteForm({setCurrentUser, currentUser}) {
 
         })
     }
+    console.log("DEEET", detail);
 
 
     return (

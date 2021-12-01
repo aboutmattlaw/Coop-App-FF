@@ -1,12 +1,16 @@
 import {Container, Navbar} from 'react-bootstrap'
 
 
-function ListHeader(listDetails) {
+
+
+// {listDetails.list.list_name} in theory could dynamically populate List Name.
+
+function ListHeader({listDetails, activeList}) {
     return (
         <Container>
             <Navbar expand="lg" variant="light" bg="light">
                 <Container>
-                    <Navbar.Brand href="#">List Name</Navbar.Brand>
+                    <Navbar.Brand href="#">{activeList?.list_name}</Navbar.Brand>
                 </Container>
             </Navbar>
         </Container>

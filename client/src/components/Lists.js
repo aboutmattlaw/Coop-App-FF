@@ -6,20 +6,24 @@ import ListDetails from './ListDetails'
 function Lists({
     currentUser,
     currentUserLists,
+    activeList,
     setCurrentUserLists,
     getListDetails,
     setListDetails,
-    listDetails
-}) { // State
+    listDetails}) 
+    
+    
+    { 
 
+    // State / listFormData for form / allItems for items to add to lists 
+        
     const [listFormData, setListFormData] = useState({list_name: ''})
-
-
     const [allItems, setAllItems] = useState([])
+    const [notes, setNotes] = useState([])
     // const [listDetails, setListDetails] = useState([])
 
 
-    // adds and shows new list
+    // form 
 
     function handleListChange(event) {
         setListFormData({
@@ -51,6 +55,8 @@ function Lists({
     }
 
 
+    // Gets and displays items that can be added to lists 
+
     useEffect(() => {
         fetch('/items').then(response => response.json()).then(response => setAllItems(response));
     }, [])
@@ -59,20 +65,13 @@ function Lists({
     const lists = currentUserLists.map(list => {
         return <>
             <ListGroup.Item onClick={
-                () => getListDetails(list.id)
+                () => getListDetails(list)
             }>
                 {
                 list.list_name
             }</ListGroup.Item>
         </>
     })
-
-
-    // const items = listDetails.list_items.map(list => {
-    //     return  <>
-    //           <li>{list.item_name}</li>
-    //             </>
-    // })
 
 
     return (
@@ -100,8 +99,9 @@ function Lists({
                 <ListDetails setListDetails={setListDetails}
                     currentUser={currentUser}
                     allItems={allItems}
+                    activeList={activeList}
                     setAllItems={setAllItems}
-                    listDetails={listDetails}></ListDetails>
+                    listDetails={listDetails} notes={notes} setNotes={setNotes}></ListDetails>
             </div>
         </>
     )
