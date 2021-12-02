@@ -5,7 +5,7 @@ import ListDetails from './ListDetails';
 
 // form state and notes state
 
-function NoteForm({setCurrentUser, currentUser, notes, setNotes, detail}) {
+function NoteForm({setCurrentUser, activeList, currentUser, notes, setNotes, detail, setListDetails}) {
 
     const [noteFormData, setNoteFormData] = useState({note_text: ''})
   
@@ -18,8 +18,6 @@ function NoteForm({setCurrentUser, currentUser, notes, setNotes, detail}) {
         })
     }
 
-// user_id is hardcoded as is list_item_id
-// TypeError: Cannot read properties of undefined (reading 'id') when trying currentUser.id
 
 
 
@@ -44,11 +42,10 @@ function NoteForm({setCurrentUser, currentUser, notes, setNotes, detail}) {
                 ...notes,
                 data
             ], console.log(data))
-
+            fetch(`/lists/${activeList.id}`).then(resp => resp.json()).then(data => setListDetails(data))
         })
     }
-    console.log("DEEET", detail);
-
+        
 
     return (
         <>

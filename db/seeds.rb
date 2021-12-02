@@ -1,3 +1,30 @@
+url = "https://www.foodcoop.com/produce/"
+
+parsed_page = Nokogiri::HTML(HTTParty.get(url))
+
+
+
+# /html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]
+# /html/body/div/main/div/div/div[4]/table/tbody/tr[1]/td[2]
+# /html/body/div/main/div/div/div[4]/table/tbody/tr[1]/td[3]
+# /html/body/div/main/div/div/div[4]/table/tbody/tr[1]/td[4]
+
+
+item_name = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]')
+
+item_name.each do |item|
+    Item.create(item_name: item.text)
+  end
+
+
+# tables = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table')
+# rows = []
+
+
+
+
+
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -22,9 +49,9 @@
 # HouseholdList.create!(user_id:3, list_id:3)
 
 
-Item.create!(item_name: "Apple")
-Item.create!(item_name: "Banana")
-Item.create!(item_name: "Corn")
+# Item.create!(item_name: "Apple")
+# Item.create!(item_name: "Banana")
+# Item.create!(item_name: "Corn")
 
 
 # ListItem.create!(list_id:1, item_id:1)

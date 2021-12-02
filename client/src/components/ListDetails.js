@@ -39,7 +39,6 @@ function ListDetails({
 
 
 // Allow for item to be made into a ListItem, aka a thing on a specific list
-// list_id is hardcoded 
 
     function addItemButton(id, list_id) {
         console.log(id)
@@ -97,8 +96,6 @@ function ListDetails({
     }
 
 
-// changes default FALSE to TRUE to indicate an item has been acquired/added to physical basket
-// list_id is hardcoded 
 
     function acquiredItem(id, acquired) {
         console.log("acq", acquired)
@@ -172,7 +169,7 @@ function ListDetails({
                        return  <li>{note.note_text}</li>
                     })}
              */}
-                    <NoteForm currentUser={currentUser} notes={notes} setNotes={setNotes} detail={detail}></NoteForm>
+                    <NoteForm currentUser={currentUser} notes={notes} setNotes={setNotes} detail={detail} activeList={activeList} setListDetails={setListDetails}></NoteForm>
 
                 </ListGroup.Item>
             </>
