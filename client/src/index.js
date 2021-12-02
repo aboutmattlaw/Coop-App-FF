@@ -7,6 +7,7 @@ import App from './App';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import ListDetails from './components/ListDetails';
+import Lists from './components/Lists';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -17,9 +18,6 @@ ReactDOM.render(
     <Route path="/signin" element={<Signin />}/>
     <Route path="/signup" element={<Signup />}/>
     <Route path="/signup" element={<Signup />}/>
-    <Route path="/listdetails" element={<ListDetails />}/>
-    <Route path=":list_id" element={<ListDetails />} />
-
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,

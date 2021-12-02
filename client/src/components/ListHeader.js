@@ -7,13 +7,7 @@ import {Container, Navbar} from 'react-bootstrap'
 
 function ListHeader({listDetails, activeList}) {
     return (
-        <Container>
-            <Navbar expand="lg" variant="light" bg="light">
-                <Container>
-                    <Navbar.Brand href="#">{activeList?.list_name}</Navbar.Brand>
-                </Container>
-            </Navbar>
-        </Container>
+                    <h3>Currnet List: {activeList?.list_name}</h3>
     )
 }
 

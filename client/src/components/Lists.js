@@ -1,5 +1,13 @@
 import {useState, useEffect} from 'react';
-import {Form, Button, ListGroup} from "react-bootstrap"
+import {
+    Form,
+    Button,
+    ListGroup,
+    Container,
+    Row,
+    Col,
+    Table
+} from "react-bootstrap"
 import ListDetails from './ListDetails'
 
 function Lists({
@@ -9,13 +17,9 @@ function Lists({
     setCurrentUserLists,
     getListDetails,
     setListDetails,
-    listDetails}) 
-    
-    
-    { 
+    listDetails
+}) { // State / listFormData for form / allItems for items to add to lists
 
-    // State / listFormData for form / allItems for items to add to lists 
-        
     const [listFormData, setListFormData] = useState({list_name: ''})
     const [allItems, setAllItems] = useState([])
     const [notes, setNotes] = useState([])
@@ -23,8 +27,8 @@ function Lists({
     // const [listDetails, setListDetails] = useState([])
 
     const filtered = allItems.filter((item) => item.item_name.toLowerCase().includes(search.toLowerCase()))
-console.log(filtered)
-    // form 
+    console.log(filtered)
+    // form
 
     function handleListChange(event) {
         setListFormData({
@@ -56,7 +60,7 @@ console.log(filtered)
     }
 
 
-    // Gets and displays items that can be added to lists 
+    // Gets and displays items that can be added to lists
 
     useEffect(() => {
         fetch('/items').then(response => response.json()).then(response => setAllItems(response));
@@ -65,13 +69,18 @@ console.log(filtered)
 
     const lists = currentUserLists.map(list => {
         return <>
-            <ListGroup.Item onClick={
-                () => getListDetails(list)
-            }>
-                {
-                list.list_name
-            }</ListGroup.Item>
+            <tr>
+                <td onClick={
+                    () => getListDetails(list)
+                }>
+                    {
+                    list.list_name
+                }</td>
+            </tr>
+
         </>
+
+
     })
 
 
@@ -80,29 +89,45 @@ console.log(filtered)
 
 
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicListName">
-                    <Form.Label>Eneter a new list name</Form.Label>
-                    <Form.Control onChange={handleListChange}
-                        name="list_name"
-                        value={
-                            listFormData.list_name
-                        }
-                        placeholder="Enter List Name"/>
-                </Form.Group>
-                <Button variant="primary" type="submit">Add New List</Button>
+                <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="formBasicListName">
+                            <Form.Label>
+                                <h3>Enter a new list name</h3>
+                            </Form.Label>
+                            <Form.Control onChange={handleListChange}
+                                name="list_name"
+                                value={
+                                    listFormData.list_name
+                                }
+                                placeholder="Enter List Name"/>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Button className="mt-5" variant="primary" type="submit">Add New List</Button>
+                    </Col>
+                </Row>
             </Form>
 
-
-            <ListGroup> {lists} </ListGroup>
+<Container>
+            <Table striped bordered hover>
+                <tbody>{lists}</tbody>
+            </Table>
+            </Container>
 
 
             <div>
-                <ListDetails filtered={filtered} search={search} setSearch={setSearch} setListDetails={setListDetails}
+                <ListDetails filtered={filtered}
+                    search={search}
+                    setSearch={setSearch}
+                    setListDetails={setListDetails}
                     currentUser={currentUser}
                     allItems={allItems}
                     activeList={activeList}
                     setAllItems={setAllItems}
-                    listDetails={listDetails} notes={notes} setNotes={setNotes}></ListDetails>
+                    listDetails={listDetails}
+                    notes={notes}
+                    setNotes={setNotes}></ListDetails>
             </div>
         </>
     )

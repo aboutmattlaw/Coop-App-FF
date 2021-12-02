@@ -31,17 +31,8 @@ function Signin({setCurrentUser}) {
 
     return (
 <>
-        <Navbar bg="dark" variant="dark">
-                <Container>
-                    <Navbar.Brand href="#home">
-                        <Link to="/">Food Coop List</Link>
-                    </Navbar.Brand>
-                </Container>
-            </Navbar>
 
-        <Container className="w-50 p-3 mt-5">
-
-
+<Container className="w-50 p-3 mt-5">
 
 
             <Form onSubmit={handleSubmit}>
@@ -65,7 +56,7 @@ function Signin({setCurrentUser}) {
                 <Link to="/signup">Or Sign Up</Link>
 
             </Form>
-        </Container>
+ </Container>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import ListHeader from "./ListHeader"
-import {ListGroup, Button, Form, Badge} from 'react-bootstrap'
+import {ListGroup, Button, Form, Badge, Card, Row, Col} from 'react-bootstrap'
 import {useState, useEffect} from 'react';
 import NoteForm from "./NoteForm";
 
@@ -194,15 +194,27 @@ function ListDetails({
 
             <ListGroup>
                 <ListGroup.Item>{det}</ListGroup.Item>
-                <ListGroup> <div className="searchbar">
-      <label htmlFor="search">Filter Items:</label>
-      <input
-        type="text"
+                
+
+    <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="formBasicListName">
+                            <Form.Label>
+                                <h3>Find Items</h3>
+                            </Form.Label>
+                            <Form.Control  type="text"
         id="search"
         placeholder="Type a name to search..."
-        onChange={(e) => setSearch(e.target.value)}
-      />
-    </div></ListGroup>
+        onChange={(e) => setSearch(e.target.value)}></Form.Control>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Button className="mt-5" variant="primary" type="submit">Add New List</Button>
+                    </Col>
+                </Row>
+
+
+
                 <ListGroup.Item>{all_items}</ListGroup.Item>
             </ListGroup>
 
