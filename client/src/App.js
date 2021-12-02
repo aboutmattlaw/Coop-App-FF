@@ -2,9 +2,9 @@ import AuthenticatedApp from "./components/AuthenticatedApp"
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
 import {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router} from 'react-router-dom'
 import {Navbar, Container, ListGroup} from 'react-bootstrap'
 import ListDetails from "./components/ListDetails";
+import { Link } from "react-router-dom"
 
 function App() { 
 
@@ -55,12 +55,12 @@ function App() {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#home">
-                        Food Coop List
+                        <Link to="/">Food Coop List</Link>
                     </Navbar.Brand>
                 </Container>
             </Navbar>
 
-            <Router> {
+             {
                 currentUser ? <AuthenticatedApp getListDetails={getListDetails}
                     setListDetails={setListDetails}
                     listDetails={listDetails}
@@ -70,7 +70,7 @@ function App() {
                     setCurrentUserLists={setCurrentUserLists} activeList={activeList}/> 
                     : <UnauthenticatedApp currentUser={currentUser}
                     setCurrentUser={setCurrentUser} />
-            } </Router>
+            } 
 
 
             <Navbar bg="dark" variant="dark">

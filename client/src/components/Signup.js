@@ -1,6 +1,5 @@
-import {Button, Form, Container} from 'react-bootstrap'
-import {Link} from "react-router-dom"
-
+import {Button, Form, Container, Navbar} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 function Signup({setCurrentUser}) {
 
     function handleSubmit(event) {
@@ -32,6 +31,17 @@ function Signup({setCurrentUser}) {
     }
 
     return (
+
+
+    
+      <>
+        <Navbar bg="dark" variant="dark">
+                <Container>
+                    <Navbar.Brand href="#home">
+                        <Link to="/">Food Coop List</Link>
+                    </Navbar.Brand>
+                </Container>
+            </Navbar>  
         <Container className="w-50 p-3 mt-5">
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicFirst">
@@ -66,11 +76,13 @@ function Signup({setCurrentUser}) {
                 <Button variant="primary" type="submit" className="m-5">
                     Submit
                 </Button>
+                <Link to="/signin">Or Sign In</Link>
 
 
-                <Link to="/">Login</Link>
+                
             </Form>
         </Container>
+        </>
     )
 }
 

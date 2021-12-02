@@ -1,6 +1,6 @@
 import Signup from "./Signup"
 import Signin from "./Signin"
-import {Routes, Route} from "react-router-dom"
+import {Link, Routes, Route} from 'react-router-dom'
 
 
 
@@ -11,10 +11,19 @@ function UnauthenticatedApp({setCurrentUser}) {
         <>
 
 
+        <Routes>
+            <Route path="/" element={<Signup setCurrentUser={setCurrentUser} />} />
+            <Route path="/signin" element={<Signin setCurrentUser={setCurrentUser} />} />
+        </Routes>
 
+
+{/* 
             <Signin setCurrentUser={setCurrentUser}/>
 
-            <Signup setCurrentUser={setCurrentUser}/>
+            <Link to="/signin">Sign In</Link>
+
+
+            <Signup setCurrentUser={setCurrentUser}/> */}
 
 
         </>

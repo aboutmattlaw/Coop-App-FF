@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import {Form, Button, ListGroup} from "react-bootstrap"
-import {Routes, Route} from 'react-router-dom'
 import ListDetails from './ListDetails'
 
 function Lists({
