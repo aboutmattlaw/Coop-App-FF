@@ -20,9 +20,11 @@ function Lists({
     const [listFormData, setListFormData] = useState({list_name: ''})
     const [allItems, setAllItems] = useState([])
     const [notes, setNotes] = useState([])
+    const [search, setSearch] = useState("")
     // const [listDetails, setListDetails] = useState([])
 
-
+    const filtered = allItems.filter((item) => item.item_name.toLowerCase().includes(search.toLowerCase()))
+console.log(filtered)
     // form 
 
     function handleListChange(event) {
@@ -96,7 +98,7 @@ function Lists({
 
 
             <div>
-                <ListDetails setListDetails={setListDetails}
+                <ListDetails filtered={filtered} search={search} setSearch={setSearch} setListDetails={setListDetails}
                     currentUser={currentUser}
                     allItems={allItems}
                     activeList={activeList}

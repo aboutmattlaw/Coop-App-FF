@@ -15,7 +15,10 @@ function ListDetails({
     activeList,
     setAllItems,
     noteFormData,
-    setNoteFormData
+    setNoteFormData,
+    search,
+    setSearch,
+    filtered
 }) {
 
 
@@ -24,7 +27,7 @@ function ListDetails({
 
     console.log("all items:", allItems)
 
-    const all_items = allItems.map(item => {
+    const all_items = filtered.map(item => {
         return <>
             <ListGroup.Item>
                 <Button onClick={
@@ -191,6 +194,15 @@ function ListDetails({
 
             <ListGroup>
                 <ListGroup.Item>{det}</ListGroup.Item>
+                <ListGroup> <div className="searchbar">
+      <label htmlFor="search">Filter Items:</label>
+      <input
+        type="text"
+        id="search"
+        placeholder="Type a name to search..."
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </div></ListGroup>
                 <ListGroup.Item>{all_items}</ListGroup.Item>
             </ListGroup>
 
