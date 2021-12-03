@@ -1,5 +1,13 @@
 import ListHeader from "./ListHeader"
-import {ListGroup, Button, Form, Badge, Card, Row, Col} from 'react-bootstrap'
+import {
+    ListGroup,
+    Button,
+    Form,
+    Badge,
+    Card,
+    Row,
+    Col
+} from 'react-bootstrap'
 import {useState, useEffect} from 'react';
 import NoteForm from "./NoteForm";
 
@@ -19,11 +27,7 @@ function ListDetails({
     search,
     setSearch,
     filtered
-}) {
-
-
-    
-// Display All Items so they can be put on list 
+}) { // Display All Items so they can be put on list
 
     console.log("all items:", allItems)
 
@@ -41,7 +45,7 @@ function ListDetails({
     })
 
 
-// Allow for item to be made into a ListItem, aka a thing on a specific list
+    // Allow for item to be made into a ListItem, aka a thing on a specific list
 
     function addItemButton(id, list_id) {
         console.log(id)
@@ -56,13 +60,14 @@ function ListDetails({
             },
             body: JSON.stringify(obj)
         }).then(resp => resp.json()).then(resp => {
-            fetch(`/lists/${activeList.id}`).then(resp => resp.json()).then(data => setListDetails(data))
+            fetch(`/lists/${
+                activeList.id
+            }`).then(resp => resp.json()).then(data => setListDetails(data))
         })
     }
 
 
-
-// delete a listitem, thus removing it from a list ... here dynamic list_id works. 
+    // delete a listitem, thus removing it from a list ... here dynamic list_id works.
 
     function deleteListItem(id, list_id) {
 
@@ -77,8 +82,8 @@ function ListDetails({
     }
 
 
-// Allow for list_item_quantity to be increased from the default of 1
-// list_id is hardcoded 
+    // Allow for list_item_quantity to be increased from the default of 1
+    // list_id is hardcoded
 
 
     function increaseQuantity(id, list_id, quantity) {
@@ -94,17 +99,17 @@ function ListDetails({
             },
             body: JSON.stringify(obj)
         }).then(resp => resp.json()).then(resp => {
-            fetch(`/lists/${activeList.id}`).then(resp => resp.json()).then(data => setListDetails(data))
+            fetch(`/lists/${
+                activeList.id
+            }`).then(resp => resp.json()).then(data => setListDetails(data))
         })
     }
 
 
-
     function acquiredItem(id, acquired) {
-        console.log("acq", acquired)
         const obj = {
             "item_id": id,
-            "acquired": !acquired
+            "acquired": ! acquired
         }
         fetch(`list_items/${id}`, {
             method: 'PATCH',
@@ -113,7 +118,9 @@ function ListDetails({
             },
             body: JSON.stringify(obj)
         }).then(resp => resp.json()).then(resp => {
-            fetch(`/lists/${activeList.id}`).then(resp => resp.json()).then(data => setListDetails(data))
+            fetch(`/lists/${
+                activeList.id
+            }`).then(resp => resp.json()).then(data => setListDetails(data))
         })
     }
 
@@ -125,54 +132,60 @@ function ListDetails({
     const displayNotes = (notes) => {
         return notes.map(note => {
             return (
-                <ListGroup.Item>
-                    {note.note_text}
-                </ListGroup.Item>
+                <ListGroup.Item> {
+                    note.note_text
+                } </ListGroup.Item>
             )
         })
-    } 
+    }
 
 
-
-
-// maps listDetails to get the list_items that make up the meat of a list. 
-// returns a delete button, a quant increaser, its name, the acquired true/false and a comment form
+    // maps listDetails to get the list_items that make up the meat of a list.
+    // returns a delete button, a quant increaser, its name, the acquired true/false and a comment form
 
     const det = listDetails.map(detail => {
         return (
             <>
                 <ListGroup.Item>
-                    <Button variant="outline-secondary" className="m-1"
-                        onClick={
-                            () => deleteListItem(detail.id, detail.list_id)
-                    }>x</Button>
-                    <Button variant="secondary"
-                        onClick={
-                            () => increaseQuantity(detail.id, detail.list_id, detail.quantity)
-                    }>
+
+                    <h5>
+                        <Button className="m-3" variant="primary"
+                            onClick={
+                                () => increaseQuantity(detail.id, detail.list_id, detail.quantity)
+                        }>
+                            {
+                            detail.quantity
+                        }</Button>
                         {
-                        detail.quantity
-                    }</Button>
-                    {
-                    detail.item.item_name} 
+                        detail.item.item_name
+                    }</h5>
                     <Button variant="outline-primary" className="m-1"
                         onClick={
                             () => acquiredItem(detail.id, detail.acquired)
                     }>
                         {
-                        detail.acquired.toString()
-                    }</Button>
-
-                <>
-                    <ListGroup>
-                        {displayNotes(detail.notes)}
-                    </ ListGroup>
-                </>
+                        detail.acquired ? 'in cart' : 'still need it'
+                    } </Button>
+                    <Button variant="outline-secondary" className="m-1"
+                        onClick={
+                            () => deleteListItem(detail.id, detail.list_id)
+                    }>remove from list</Button>
+                    <>
+                   
+                        <ListGroup  className="mt-3" > {
+                            displayNotes(detail.notes)
+                        } </ListGroup>
+                    </>
                     {/* {detail.notes.map(note => {
                        return  <li>{note.note_text}</li>
                     })}
              */}
-                    <NoteForm currentUser={currentUser} notes={notes} setNotes={setNotes} detail={detail} activeList={activeList} setListDetails={setListDetails}></NoteForm>
+                    <NoteForm currentUser={currentUser}
+                        notes={notes}
+                        setNotes={setNotes}
+                        detail={detail}
+                        activeList={activeList}
+                        setListDetails={setListDetails}></NoteForm>
 
                 </ListGroup.Item>
             </>
@@ -181,38 +194,34 @@ function ListDetails({
     })
 
 
-
-
-
-
-// shows both the list_items (det) and the items (all_items)
+    // shows both the list_items (det) and the items (all_items)
 
     return (
         <>
 
-            <ListHeader listDetails={listDetails} activeList={activeList}></ListHeader>
+            <ListHeader listDetails={listDetails}
+                activeList={activeList}></ListHeader>
 
             <ListGroup>
                 <ListGroup.Item>{det}</ListGroup.Item>
-                
 
-    <Row>
+
+                <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicListName">
                             <Form.Label>
                                 <h3>Find Items</h3>
                             </Form.Label>
-                            <Form.Control  type="text"
-        id="search"
-        placeholder="Type a name to search..."
-        onChange={(e) => setSearch(e.target.value)}></Form.Control>
+                            <Form.Control type="text" id="search" placeholder="Type a name to search..."
+                                onChange={
+                                    (e) => setSearch(e.target.value)
+                            }></Form.Control>
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Button className="mt-5" variant="primary" type="submit">Add New List</Button>
+                        <Button className="mt-5" variant="primary" type="submit">Find</Button>
                     </Col>
                 </Row>
-
 
 
                 <ListGroup.Item>{all_items}</ListGroup.Item>

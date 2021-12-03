@@ -4,7 +4,7 @@ class ListsController < ApplicationController
     def show
         list = List.find_by(id: params[:id])
      if list
-       render json: list.list_items, status: 200
+       render json: list.list_items.sort(), status: 200
      else
        render json: { error: 'what?' }, status: 404
      end

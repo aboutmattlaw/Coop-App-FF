@@ -55,7 +55,7 @@ function App() {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#home">
-                        <Link to="/">Food Coop List</Link>
+                        <h1>Food Coop List</h1>
                     </Navbar.Brand>
                 </Container>
             </Navbar>

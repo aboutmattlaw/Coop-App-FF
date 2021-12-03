@@ -1,14 +1,8 @@
+# # # Works 
+
 url = "https://www.foodcoop.com/produce/"
 
 parsed_page = Nokogiri::HTML(HTTParty.get(url))
-
-
-
-# /html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]
-# /html/body/div/main/div/div/div[4]/table/tbody/tr[1]/td[2]
-# /html/body/div/main/div/div/div[4]/table/tbody/tr[1]/td[3]
-# /html/body/div/main/div/div/div[4]/table/tbody/tr[1]/td[4]
-
 
 item_name = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]')
 
@@ -17,11 +11,30 @@ item_name.each do |item|
   end
 
 
-# tables = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table')
-# rows = []
+############ WIP ############ 
+
+# url = "https://www.foodcoop.com/produce/"
+
+# parsed_page = Nokogiri::HTML(HTTParty.get(url))
+
+# item_name = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody')
+
+# item_name.each do |item|
+#   item = {}
+
+#   item[:item_name] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]/div[1]')&.text&.squish
+#   item[:price] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[2]')&.text&.squish
+#   item[:organic] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[3]')&.text&.squish
+#   item[:origin] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[4]')&.text&.squish
+#   Item.where(item).create
+  
+# end
+  
+
+############ WIP ############ 
 
 
-
+############ OLD ############ 
 
 
 
