@@ -188,6 +188,13 @@ function ListDetails({
                         {
                         detail.item.item_name
                     }</h5>
+
+                    <ListGroup horizontal className="m-3">
+                        <ListGroup.Item>{detail.item.price}</ListGroup.Item>
+                        <ListGroup.Item>{detail.item.organic}</ListGroup.Item>
+                        <ListGroup.Item>{detail.item.origin}</ListGroup.Item>
+                        </ListGroup>
+
                     <Button variant="outline-primary" className="m-1"
                         onClick={
                             () => acquiredItem(detail.id, detail.acquired)
