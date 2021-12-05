@@ -4,6 +4,8 @@ import {
     Button,
     Form,
     Badge,
+    Table,
+    Container,
     Card,
     Row,
     Col
@@ -32,14 +34,41 @@ function ListDetails({
     console.log("all items:", allItems)
 
     const all_items = filtered.map(item => {
-        return <>
-            <ListGroup.Item>
+        return <> {/* <ListGroup.Item>
                 <Button onClick={
                     () => addItemButton(item.id, item.list_id)
                 }>Add</Button>
                 {
                 item.item_name
-            }</ListGroup.Item>
+            }
+            {item.price}
+            {item.organic}
+            {item.origin}
+            
+            
+            </ListGroup.Item> */}
+
+
+            <tr>
+                <td>
+                    <Button onClick={
+                        () => addItemButton(item.id, item.list_id)
+                    }>Add</Button>
+                </td>
+                <td>{
+                    item.item_name
+                }</td>
+                <td>{
+                    item.price
+                }</td>
+                <td>{
+                    item.organic
+                }</td>
+                <td>{
+                    item.origin
+                }</td>
+            </tr>
+
 
         </>
     })
@@ -171,8 +200,9 @@ function ListDetails({
                             () => deleteListItem(detail.id, detail.list_id)
                     }>remove from list</Button>
                     <>
-                   
-                        <ListGroup  className="mt-3" > {
+
+                        <ListGroup className="mt-3">
+                            {
                             displayNotes(detail.notes)
                         } </ListGroup>
                     </>
@@ -197,39 +227,46 @@ function ListDetails({
     // shows both the list_items (det) and the items (all_items)
 
     return (
-        <>
+    <>
 
-            <ListHeader listDetails={listDetails}
-                activeList={activeList}></ListHeader>
+        <ListHeader listDetails={listDetails}
+            activeList={activeList}></ListHeader>
 
-            <ListGroup>
-                <ListGroup.Item>{det}</ListGroup.Item>
-
-
-                <Row>
-                    <Col>
-                        <Form.Group className="mb-3" controlId="formBasicListName">
-                            <Form.Label>
-                                <h3>Find Items</h3>
-                            </Form.Label>
-                            <Form.Control type="text" id="search" placeholder="Type a name to search..."
-                                onChange={
-                                    (e) => setSearch(e.target.value)
-                            }></Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Button className="mt-5" variant="primary" type="submit">Find</Button>
-                    </Col>
-                </Row>
+        <ListGroup>
+            <ListGroup.Item>{det}</ListGroup.Item>
 
 
-                <ListGroup.Item>{all_items}</ListGroup.Item>
-            </ListGroup>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="formBasicListName">
+                        <Form.Label>
+                            <h3>Find Items</h3>
+                        </Form.Label>
+                        <Form.Control type="text" id="search" placeholder="Type a name to search..."
+                            onChange={
+                                (e) => setSearch(e.target.value)
+                        }></Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Button className="mt-5" variant="primary" type="submit">Find</Button>
+                </Col>
+            </Row>
+</ListGroup>
+
+            {/* <ListGroup.Item>{all_items}</ListGroup.Item>
+            </ListGroup> */}
+
+
+            <Container>
+                <Table striped bordered hover>
+                    <tbody>{all_items}</tbody>
+                </Table>
+            </Container>
 
 
         </>
-    )
-}
-
-export default ListDetails
+        )
+        }
+        
+        export default ListDetails

@@ -1,5 +1,5 @@
 import {Button, Form, Container, Navbar} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 
 
@@ -22,6 +22,7 @@ function Signin({setCurrentUser}) {
             if (resp.ok) {
                 console.log('log in resp', resp)
                 resp.json().then(user => setCurrentUser(user))
+
             } else {
                 console.log('user log in', resp)
                 alert(resp)

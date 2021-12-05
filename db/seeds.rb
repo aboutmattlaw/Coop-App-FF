@@ -11,34 +11,62 @@
 #   end
 
 
+## CSV approach 
+
+require 'csv'
+
+csv_text = File.read(Rails.root.join('lib', 'seed', 'data.csv'))
+
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+  csv.each do |row|
+    i = Item.new
+    i.item_name = row['name'].squish
+    i.price = row['price'].squish
+    i.organic = row['organic'].squish
+    i.origin = row['origin'].squish
+    i.price.squish
+    i.save
+   end
+
+   puts "There are now #{Item.count} rows in the Items table"
+
+
+
+
+
+
+
+# # # # WIP
+
+
+# url = "https://www.foodcoop.com/produce/"
+
+# parsed_page = Nokogiri::HTML(HTTParty.get(url))
+
+# table = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr')
+# item_name = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]/div[1]')
+# price = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[2]')
+# organic = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[3]')
+# origin = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[4]')
+
+# table.each do |row|
+
+#   item = Item.new
+  
+#   item[:item_name] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]/div[1]')&.text&.squish
+#   item[:price] = price&.text&.squish
+#   item[:organic] = organic&.text&.squish
+#   item[:origin]  = origin&.text&.squish
+  
+
+# end
+
+
 
 
 
   
-
-
-
-############ WIP ############ 
-
-url = "https://www.foodcoop.com/produce/"
-
-parsed_page = Nokogiri::HTML(HTTParty.get(url))
-
-item_name = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody')
-
-item_name.each do |item|
-  item = {}
-
-  item[:item_name] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[1]/div[1]')&.text&.squish
-  item[:price] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[2]')&.text&.squish
-  item[:organic] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[3]')&.text&.squish
-  item[:origin] = parsed_page.xpath('/html/body/div/main/div/div/div[4]/table/tbody/tr/td[4]')&.text&.squish
-  Item.where(item).create
-  
-end
-  
-
-############ WIP ############ 
 
 
 ############ OLD ############ 
