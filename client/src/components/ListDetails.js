@@ -2,13 +2,9 @@ import ListHeader from "./ListHeader"
 import {
     ListGroup,
     Button,
-    Form,
-    Badge,
     Table,
-    Container,
-    Card,
-    Row,
-    Col
+    Navbar,
+    Container
 } from 'react-bootstrap'
 import {useState, useEffect} from 'react';
 import NoteForm from "./NoteForm";
@@ -33,22 +29,11 @@ function ListDetails({
 }) { // Display All Items so they can be put on list
 
     console.log("all items:", allItems)
+    
+
 
     const all_items = filtered.map(item => {
-        return <> {/* <ListGroup.Item>
-                <Button onClick={
-                    () => addItemButton(item.id, item.list_id)
-                }>Add</Button>
-                {
-                item.item_name
-            }
-            {item.price}
-            {item.organic}
-            {item.origin}
-            
-            
-            </ListGroup.Item> */}
-
+        return <> 
 
             <tr>
                 <td>
@@ -97,7 +82,7 @@ function ListDetails({
     }
 
 
-    // delete a listitem, thus removing it from a list ... here dynamic list_id works.
+    // delete a listitem, thus removing it from a list 
 
     function deleteListItem(id, list_id) {
 
@@ -113,7 +98,7 @@ function ListDetails({
 
 
     // Allow for list_item_quantity to be increased from the default of 1
-    // list_id is hardcoded
+
 
 
     function increaseQuantity(id, list_id, quantity) {
@@ -135,6 +120,8 @@ function ListDetails({
         })
     }
 
+    
+    // Indicates that an item has been grabbed from shelf and put in cart
 
     function acquiredItem(id, acquired) {
         const obj = {
@@ -155,9 +142,7 @@ function ListDetails({
     }
 
 
-    console.log("listdetails:", listDetails)
-    console.log("notes:", notes)
-
+ // shows notes
 
     const displayNotes = (notes) => {
         return notes.map(note => {
@@ -170,8 +155,7 @@ function ListDetails({
     }
 
 
-    // maps listDetails to get the list_items that make up the meat of a list.
-    // returns a delete button, a quant increaser, its name, the acquired true/false and a comment form
+    // returns a delete button, a quant increaser, its name, the acquired true/false, item details and a comment form
 
     const det = listDetails.map(detail => {
         return (
@@ -220,10 +204,7 @@ function ListDetails({
                             displayNotes(detail.notes)
                         } </ListGroup>
                     </>
-                    {/* {detail.notes.map(note => {
-                       return  <li>{note.note_text}</li>
-                    })}
-             */}
+              
                     <NoteForm currentUser={currentUser}
                         notes={notes}
                         setNotes={setNotes}
@@ -237,8 +218,9 @@ function ListDetails({
 
     })
 
+    console.log("item count:", listDetails.length)
 
-    // shows both the list_items (det) and the items (all_items)
+    // shows the ListHeder list_items (det) and the items (all_items)
 
     return (
         <>
@@ -252,11 +234,11 @@ function ListDetails({
                 {activeList ? <Filter setSearch={setSearch}/> : null}
             </ListGroup>
 
-          
-
+        
 
             <Container>
-                <Table striped bordered hover>
+                <Table className="mb-5" striped bordered hover>
+             
                     <tbody>{
                         activeList ? all_items : null
                     }</tbody>

@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import {
     Form,
     Button,
-    ListGroup,
     Container,
     Row,
     Col,
@@ -18,17 +17,19 @@ function Lists({
     getListDetails,
     setListDetails,
     listDetails
-}) { // State / listFormData for form / allItems for items to add to lists
+}) { 
+    
+    // state
 
     const [listFormData, setListFormData] = useState({list_name: ''})
     const [allItems, setAllItems] = useState([])
     const [notes, setNotes] = useState([])
     const [search, setSearch] = useState("")
-    // const [listDetails, setListDetails] = useState([])
 
     const filtered = allItems.filter((item) => item.item_name.toLowerCase().includes(search.toLowerCase()))
-    console.log(filtered)
-    // form
+   
+   
+    // list form changes
 
     function handleListChange(event) {
         setListFormData({
@@ -36,6 +37,9 @@ function Lists({
             [event.target.name]: event.target.value
         })
     }
+
+    // new list submission
+
     function handleSubmit(event) {
         event.preventDefault()
         setListFormData({list_name: ''})
@@ -55,7 +59,6 @@ function Lists({
                 ...currentUserLists,
                 data
             ])
-            console.log()
         })
     }
 
@@ -66,6 +69,7 @@ function Lists({
         fetch('/items').then(response => response.json()).then(response => setAllItems(response));
     }, [])
 
+    // shows user lists
 
     const lists = currentUserLists.map(list => {
         return <>

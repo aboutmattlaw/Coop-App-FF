@@ -1,8 +1,8 @@
-import {Button, Form, Container, Navbar} from 'react-bootstrap'
+import {Button, Form, Container} from 'react-bootstrap'
 import {Link, Redirect} from 'react-router-dom'
 
 
-
+// Sign In Form
 
 function Signin({setCurrentUser}) {
     function handleSubmit(e) {
@@ -20,7 +20,6 @@ function Signin({setCurrentUser}) {
             body: JSON.stringify(obj)
         }).then(resp => {
             if (resp.ok) {
-                console.log('log in resp', resp)
                 resp.json().then(user => setCurrentUser(user))
 
             } else {

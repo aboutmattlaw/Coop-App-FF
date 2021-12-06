@@ -2,7 +2,7 @@ import AuthenticatedApp from "./components/AuthenticatedApp"
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
 import {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar, Container, ListGroup} from 'react-bootstrap'
+import {Navbar, Container, ListGroup, Button} from 'react-bootstrap'
 import ListDetails from "./components/ListDetails";
 import { Link } from "react-router-dom"
 
@@ -14,6 +14,14 @@ function App() {
     const [currentUserLists, setCurrentUserLists] = useState([])
     const [listDetails, setListDetails] = useState([])
     const [activeList, setActiveList] = useState({})
+
+
+    function handleDelete(e) {
+        fetch('/logout', {method: 'DELETE'}).then(resp => {
+            setCurrentUser(null)
+        })
+    }
+
 
 
     // Fetch current user details
@@ -72,16 +80,21 @@ function App() {
                     setCurrentUser={setCurrentUser} />
             } 
 
-
-            <Navbar bg="dark" variant="dark">
+{currentUser ? 
+            <Navbar bg="dark" variant="dark" fixed="bottom">
                 <Container>
-                    <Navbar.Brand>
-                        Food Coop List
+                    <Navbar.Brand >
+                       Items on list: {listDetails.length}
                     </Navbar.Brand>
+                    <div className="text-right"><Button onClick={handleDelete}>Logout</Button></div>
                 </Container>
             </Navbar>
 
+:
 
+null
+
+}
         </>
     );
 }

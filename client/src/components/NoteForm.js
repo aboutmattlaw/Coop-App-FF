@@ -1,12 +1,11 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {Form, Button, Row, Col} from 'react-bootstrap'
 import ListDetails from './ListDetails';
 
 
-// form state and notes state
+// form state
 
 function NoteForm({
-    setCurrentUser,
     activeList,
     currentUser,
     notes,
@@ -56,10 +55,9 @@ function NoteForm({
 
     return (
         <>
-<Form onSubmit={handleNoteSubmit}>
-            <Row>
-                <Col>
-                    
+            <Form onSubmit={handleNoteSubmit}>
+                <Row>
+                    <Col>
                         <Form.Group className="mb-3" controlId="formBasicNoteText">
                             <Form.Label></Form.Label>
                             <Form.Control onChange={handleNoteChange}
@@ -73,9 +71,7 @@ function NoteForm({
                     <Col>
                         <Button className="mt-4" variant="primary" type="submit">Add Note</Button>
                     </Col>
-              
-
-            </Row>
+                </Row>
             </Form>
 
 

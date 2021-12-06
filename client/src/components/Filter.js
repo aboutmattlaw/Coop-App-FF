@@ -1,9 +1,6 @@
 import {Row, Col, Form, Button} from 'react-bootstrap'
 
 
-
-
-
 function Filter({setSearch}) {
     return (
 
