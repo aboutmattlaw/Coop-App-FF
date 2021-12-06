@@ -84,7 +84,7 @@ function App() {
             <Navbar bg="dark" variant="dark" fixed="bottom">
                 <Container>
                     <Navbar.Brand >
-                       Items on list: {listDetails.length}
+                       Items on list: {listDetails.length} 
                     </Navbar.Brand>
                     <div className="text-right"><Button onClick={handleDelete}>Logout</Button></div>
                 </Container>

@@ -23,8 +23,8 @@ function Signin({setCurrentUser}) {
                 resp.json().then(user => setCurrentUser(user))
 
             } else {
-                console.log('user log in', resp)
-                alert(resp)
+                resp.json().then(alert(resp.statusText))
+                
             }
         })
     }
@@ -36,6 +36,7 @@ function Signin({setCurrentUser}) {
 
 
             <Form onSubmit={handleSubmit}>
+            <h2>Sign In</h2>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" placeholder="Enter Email"/>
@@ -53,7 +54,7 @@ function Signin({setCurrentUser}) {
                     Submit
                 </Button>
 
-                <Link to="/signup">Or Sign Up</Link>
+                {/* <Link to="/signup">Or Sign Up</Link> */}
 
             </Form>
  </Container>

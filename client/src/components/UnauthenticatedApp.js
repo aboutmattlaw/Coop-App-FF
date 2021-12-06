@@ -17,7 +17,7 @@ function UnauthenticatedApp({setCurrentUser}) {
 
 
             <Signin setCurrentUser={setCurrentUser}/>
-            <Link to="/signin">Sign In</Link>
+            {/* <Link to="/signin">Sign In</Link> */}
             <Signup setCurrentUser={setCurrentUser}/> 
 
 

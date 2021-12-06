@@ -171,7 +171,7 @@ function ListDetails({
                             detail.quantity
                         }</Button>
                         {
-                        detail.item.item_name
+                        detail.acquired ?  <strike>{detail.item.item_name}</strike>: detail.item.item_name
                     }</h5>
 
                     <ListGroup horizontal className="m-3">

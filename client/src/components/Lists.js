@@ -26,6 +26,7 @@ function Lists({
     const [notes, setNotes] = useState([])
     const [search, setSearch] = useState("")
 
+
     const filtered = allItems.filter((item) => item.item_name.toLowerCase().includes(search.toLowerCase()))
    
    
@@ -63,6 +64,10 @@ function Lists({
     }
 
 
+
+
+
+
     // Gets and displays items that can be added to lists
 
     useEffect(() => {
@@ -80,6 +85,7 @@ function Lists({
                     <h4>{
                     list.list_name
                 }</h4></td>
+               
             </tr>
 
         </>
@@ -87,6 +93,7 @@ function Lists({
 
     })
 
+    console.log(currentUser)
 
     return (
         <>

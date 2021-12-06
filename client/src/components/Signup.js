@@ -25,8 +25,8 @@ function Signup({setCurrentUser}) {
             if (resp.ok) {
                 resp.json().then(data => setCurrentUser(data))
             } else {
-                console.log('user signup resp not ok', resp)
-                alert(resp)
+                resp.json().then(alert(resp.statusText))
+
             }
         })
 
@@ -38,6 +38,7 @@ function Signup({setCurrentUser}) {
         <>
 
             <Container className="w-50 p-3 mt-5">
+            <h2>Or Sign Up</h2>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicFirst">
                         <Form.Label>First Name</Form.Label>
@@ -71,7 +72,7 @@ function Signup({setCurrentUser}) {
                     <Button variant="primary" type="submit" className="m-5">
                         Submit
                     </Button>
-                    <Link to="/signin">Or Sign In</Link>
+                    {/* <Link to="/signin">Or Sign In</Link> */}
 
 
                 </Form>
