@@ -12,6 +12,7 @@ import {
 } from 'react-bootstrap'
 import {useState, useEffect} from 'react';
 import NoteForm from "./NoteForm";
+import Filter from "./Filter";
 
 
 function ListDetails({
@@ -190,10 +191,16 @@ function ListDetails({
                     }</h5>
 
                     <ListGroup horizontal className="m-3">
-                        <ListGroup.Item>{detail.item.price}</ListGroup.Item>
-                        <ListGroup.Item>{detail.item.organic}</ListGroup.Item>
-                        <ListGroup.Item>{detail.item.origin}</ListGroup.Item>
-                        </ListGroup>
+                        <ListGroup.Item>{
+                            detail.item.price
+                        }</ListGroup.Item>
+                        <ListGroup.Item>{
+                            detail.item.organic
+                        }</ListGroup.Item>
+                        <ListGroup.Item>{
+                            detail.item.origin
+                        }</ListGroup.Item>
+                    </ListGroup>
 
                     <Button variant="outline-primary" className="m-1"
                         onClick={
@@ -234,46 +241,31 @@ function ListDetails({
     // shows both the list_items (det) and the items (all_items)
 
     return (
-    <>
+        <>
 
-        <ListHeader listDetails={listDetails}
-            activeList={activeList}></ListHeader>
+            {activeList ? <ListHeader listDetails={listDetails}
+                activeList={activeList}></ListHeader> : null}
 
-        <ListGroup>
-            <ListGroup.Item>{det}</ListGroup.Item>
+            <ListGroup>
+                {activeList ? <ListGroup.Item>{det}</ListGroup.Item> : null}   
+                
+                {activeList ? <Filter setSearch={setSearch}/> : null}
+            </ListGroup>
 
-
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3" controlId="formBasicListName">
-                        <Form.Label>
-                            <h3>Find Items</h3>
-                        </Form.Label>
-                        <Form.Control type="text" id="search" placeholder="Type a name to search..."
-                            onChange={
-                                (e) => setSearch(e.target.value)
-                        }></Form.Control>
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Button className="mt-5" variant="primary" type="submit">Find</Button>
-                </Col>
-            </Row>
-</ListGroup>
-
-            {/* <ListGroup.Item>{all_items}</ListGroup.Item>
-            </ListGroup> */}
+          
 
 
             <Container>
                 <Table striped bordered hover>
-                    <tbody>{all_items}</tbody>
+                    <tbody>{
+                        activeList ? all_items : null
+                    }</tbody>
                 </Table>
             </Container>
 
 
         </>
-        )
-        }
-        
-        export default ListDetails
+    )
+}
+
+export default ListDetails
