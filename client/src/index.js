@@ -14,10 +14,12 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-    <Route path="/" element={<App />}/>
-    <Route path="/signin" element={<Signin />}/>
-    <Route path="/signup" element={<Signup />}/>
-    <Route path="/signup" element={<Signup />}/>
+    <Route path="/" element={<App />}>
+      <Route path="signin" element={<Signin />}/>
+      <Route path="signup" element={<Signup />}/>
+      <Route path="listdetails" element={<ListDetails />}/>
+      <Route path=":listdetailsId" element={<ListDetails />}/>
+      </Route>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,

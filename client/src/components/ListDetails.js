@@ -3,10 +3,9 @@ import {
     ListGroup,
     Button,
     Table,
-    Navbar,
+    Badge,
     Container
 } from 'react-bootstrap'
-import {useState, useEffect} from 'react';
 import NoteForm from "./NoteForm";
 import Filter from "./Filter";
 
@@ -162,7 +161,7 @@ function ListDetails({
             <>
                 <ListGroup.Item>
 
-                    <h5>
+                    <h4>
                         <Button className="m-3" variant="primary"
                             onClick={
                                 () => increaseQuantity(detail.id, detail.list_id, detail.quantity)
@@ -170,21 +169,15 @@ function ListDetails({
                             {
                             detail.quantity
                         }</Button>
+
+                        
                         {
                         detail.acquired ?  <strike>{detail.item.item_name}</strike>: detail.item.item_name
-                    }</h5>
+                    }</h4>
 
-                    <ListGroup horizontal className="m-3">
-                        <ListGroup.Item>{
-                            detail.item.price
-                        }</ListGroup.Item>
-                        <ListGroup.Item>{
-                            detail.item.organic
-                        }</ListGroup.Item>
-                        <ListGroup.Item>{
-                            detail.item.origin
-                        }</ListGroup.Item>
-                    </ListGroup>
+
+
+
 
                     <Button variant="outline-primary" className="m-1"
                         onClick={
@@ -193,11 +186,27 @@ function ListDetails({
                         {
                         detail.acquired ? 'in cart' : 'still need it'
                     } </Button>
+
+
+
                     <Button variant="outline-secondary" className="m-1"
                         onClick={
                             () => deleteListItem(detail.id, detail.list_id)
                     }>remove from list</Button>
                     <>
+
+
+
+                    <h5><div className="mt-3"><Badge pill bg="secondary">
+    {detail.item.price}
+  </Badge>{' '}
+  <Badge pill bg="secondary">
+    {detail.item.organic}
+  </Badge>{' '}
+  <Badge pill bg="secondary">
+    {detail.item.origin}
+  </Badge>{' '}</div></h5>
+
 
                         <ListGroup className="mt-3">
                             {
@@ -231,7 +240,7 @@ function ListDetails({
             <ListGroup>
                 {activeList ? <ListGroup.Item>{det}</ListGroup.Item> : null}   
                 
-                {activeList ? <Filter setSearch={setSearch}/> : null}
+                {activeList ? <Filter setSearch={setSearch} search={search}/> : null}
             </ListGroup>
 
         

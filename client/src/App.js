@@ -19,6 +19,7 @@ function App() {
     function handleDelete(e) {
         fetch('/logout', {method: 'DELETE'}).then(resp => {
             setCurrentUser(null)
+            setListDetails([])
         })
     }
 
@@ -63,7 +64,7 @@ function App() {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#home">
-                        <h1>Food Coop List</h1>
+                        <h1><Link to="/" style={{ color: 'inherit', textDecoration: 'inherit'}}>Food Coop List</Link></h1>
                     </Navbar.Brand>
                 </Container>
             </Navbar>
