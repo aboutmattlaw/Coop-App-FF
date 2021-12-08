@@ -38,7 +38,7 @@ function Signup({setCurrentUser}) {
         <>
 
             <Container className="w-50 p-3 mt-5">
-            <h2>Or Sign Up</h2>
+            <h2>Sign Up</h2>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicFirst">
                         <Form.Label>First Name</Form.Label>
@@ -72,7 +72,7 @@ function Signup({setCurrentUser}) {
                     <Button variant="primary" type="submit" className="m-5">
                         Submit
                     </Button>
-                    <Link to="/signin">Or Sign In</Link>
+                   <div> <Link to="/signin">Already have an account? Sign in!</Link></div>
 
 
                 </Form>

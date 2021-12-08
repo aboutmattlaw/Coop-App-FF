@@ -106,12 +106,13 @@ function Lists({
                             <Form.Label>
                                 <h3>Welcome, {currentUser.first_name}! Create a new list.</h3>
                             </Form.Label>
-                            <Form.Control onChange={handleListChange}
+                            <Form.Control required onChange={handleListChange}
                                 name="list_name"
                                 value={
                                     listFormData.list_name
                                 }
                                 placeholder="Enter List Name"/>
+                                
                         </Form.Group>
                     </Col>
                     <Col>

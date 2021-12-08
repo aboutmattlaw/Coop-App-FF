@@ -54,7 +54,7 @@ function Signin({setCurrentUser}) {
                     Submit
                 </Button>
 
-                <Link to="/">Or Sign Up</Link>
+                <div><Link to="/">Don't have an account yet? Sign up now!</Link></div>
 
             </Form>
  </Container>

@@ -6,7 +6,7 @@ function Filter({setSearch, search}) {
     console.log(search)
     return (
 
-        <Row>
+        <Row className="mt-3">
         <Col>
             <Form.Group className="mb-3" controlId="formBasicListName">
                 <Form.Label>

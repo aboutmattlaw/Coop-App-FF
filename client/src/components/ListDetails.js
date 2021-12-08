@@ -10,6 +10,8 @@ import NoteForm from "./NoteForm";
 import Filter from "./Filter";
 
 
+
+
 function ListDetails({
     notes,
     setNotes,
@@ -234,8 +236,12 @@ function ListDetails({
     return (
         <>
 
+
+
+            
             {activeList ? <ListHeader listDetails={listDetails}
                 activeList={activeList}></ListHeader> : null}
+              
 
             <ListGroup>
                 {activeList ? <ListGroup.Item>{det}</ListGroup.Item> : null}   
@@ -246,14 +252,13 @@ function ListDetails({
         
 
             <Container>
-                <Table className="mb-5" striped bordered hover>
+                <Table className="mb-5" striped bordered hover responsive>
              
                     <tbody>{
                         activeList ? all_items : null
                     }</tbody>
                 </Table>
             </Container>
-
 
         </>
     )
