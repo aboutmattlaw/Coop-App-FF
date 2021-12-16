@@ -3,9 +3,8 @@ class ItemsController < ApplicationController
   # /items shows all items
   def index
     items = Item.all
-      render json: items, status: :ok
+    render json: items, status: :ok
   end
-
 
   def create
     new_item = Item.create(item_params)
@@ -16,17 +15,9 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
-  
-
   private
-    
+
   def item_params
     params.permit(:item_name, :aisle, :category)
   end
-
-
 end
-
-

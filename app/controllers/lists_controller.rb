@@ -1,18 +1,14 @@
 class ListsController < ApplicationController
+  def show
+    list = List.find_by(id: params[:id])
+    if list
+      render json: list.list_items.sort(), status: 200
+    else
+      render json: { error: "what?" }, status: 404
+    end
+  end
 
-
-    def show
-        list = List.find_by(id: params[:id])
-     if list
-       render json: list.list_items.sort(), status: 200
-     else
-       render json: { error: 'what?' }, status: 404
-     end
-   end
-   
-
-
-   def create
+  def create
     list = List.create(list_params)
     if list.valid?
       render json: list, status: :created
@@ -26,5 +22,4 @@ class ListsController < ApplicationController
   def list_params
     params.permit(:list_name, :user_id)
   end
-
 end
