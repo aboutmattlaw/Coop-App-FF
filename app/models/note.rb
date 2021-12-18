@@ -1,4 +1,4 @@
 class Note < ApplicationRecord
-  belongs_to :user
-  belongs_to :list_item
+    belongs_to :user
+    belongs_to :list_item
 end
