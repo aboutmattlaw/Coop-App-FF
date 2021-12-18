@@ -1,0 +1,3 @@
+class Housemate < ApplicationRecord
+   
+end

@@ -1,0 +1,3 @@
+class HouseholdList < ApplicationRecord
+
+end
